@@ -1,0 +1,17 @@
+Compiling single file...
+--------
+- Filename: C:\LATIHAN CPP\Percabangan If else while do for\while-do.cpp
+- Compiler Name: TDM-GCC 4.9.2 32-bit Release
+
+Processing C++ source file...
+--------
+- C++ Compiler: %BinDir0%\g++.exe
+- Command: g++.exe "C:\LATIHAN CPP\Percabangan If else while do for\while-do.cpp" -o "C:\LATIHAN CPP\Percabangan If else while do for\while-do.exe" -m32 -I"%CppIncludeDir0%" -I"%CppIncludeDir1%" -I"%CppIncludeDir2%" -I"%CppIncludeDir2%\c++" -L"%LibDir0%" -static-libgcc -m32
+
+Compilation results...
+--------
+- Errors: 0
+- Warnings: 0
+- Output Filename: C:\LATIHAN CPP\Percabangan If else while do for\while-do.exe
+- Output Size: 1,30364513397217 MiB
+- Compilation Time: 0,89s

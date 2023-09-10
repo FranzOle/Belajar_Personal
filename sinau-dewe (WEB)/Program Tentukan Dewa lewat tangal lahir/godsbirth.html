@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="script/godsbirth.js" async defer></script>
+</head>
+<body>
+        <div class="container w-50">
+       <form action="" class="row mt-5 mt-sm-5">
+        <h1 class="text-center py-1 text-primary">Temukan Dewa Lewat <br> Tanggal Lahir</h1>
+        <div class="row g-3"> 
+            <div class="col-8 col-sm-8 col-md-8">
+                <label for="name" class="form-label text-primary">Nama Kamu :</label>
+                <input type="text" name="Name" id="name" class="form-control" value="">
+            </div>
+            <div class="col-4 col-sm-4 col-md-4">
+                <label for="pass" class="form-label text-primary">Tanggal Lahir :</label>
+                <input type="date" name="tgl" id="tgl" class="form-control" value="">
+            </div>
+        </div>
+        <div class="row g-1 px-2 g-md-2">
+            <button class="btn btn-primary col-2" onclick="DewaKamu()" data-bs-toggle="modal" data-bs-target="#exampleModal">Kirim</button>
+        </div>
+       </form>
+    </div>
+
+    <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div
+</body>
+</html>

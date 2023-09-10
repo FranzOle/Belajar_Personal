@@ -1,0 +1,43 @@
+
+.container{
+    height: 70px;
+    display: flex;
+    margin: 2px;
+}
+.utama{
+    width:500px;
+    height:300px;
+    padding: 5px;
+    padding-bottom: 5px;
+}
+.container div{
+    background-color: rgb(255, 124, 18);
+    flex: 1;
+    margin: 2px;
+    color: white;
+}
+
+.container div.kolom1{
+    flex:5;
+}
+
+.container2{
+    height: 200px;
+    display: flex;
+    margin: 2px;
+}
+
+.container2 div{
+    background-color: rgb(255, 124, 18);
+    flex: 1;
+    margin: 2px;
+    color: white;
+}
+
+.container2 div.kolom5{
+  flex:3;
+}
+
+.container2 div.kolom52{    
+    height: 200px;
+}

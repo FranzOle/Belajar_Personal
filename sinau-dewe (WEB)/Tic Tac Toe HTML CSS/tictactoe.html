@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tictactoe</title>
+    <style>
+        * {
+  margin: 0;
+  padding: 0%;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: aliceblue;
+  max-height: 100vh;
+  max-width: 100vw;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+h1 {
+  margin: 20px;
+}
+
+.container {
+  width: 250px;
+  height: 250px;
+  background-color: antiquewhite;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.container div {
+  width: calc(250px / 3);
+  height: calc(250px / 3);
+  background-color: beige;
+  border: 2px solid grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.6rem;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.result_info {
+  background-color: linen;
+  margin: 1rem;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.result_info p {
+  width: 150px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.result_info button {
+  outline: none;
+  border: none;
+  padding: 5px 10px;
+  background-color: #4488ff;
+  color: aliceblue;
+  border-radius: 5px;
+}
+
+a{
+    text-decoration: none;
+}
+
+#footer{
+    width: 70%;
+    max-width: 200px;
+    height: 48px;
+    position: absolute;
+    bottom: 10px;
+    margin: auto;
+    display: flex;
+    font-size: 1.6rem;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    right: 0;
+    background-color: #5588ff;
+    border-radius: 40px;
+    color: whitesmoke;
+}
+h1{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+    </style>
+</head>
+<body>
+    <h1>Tic Tac Toe</h1>
+    <div class="container">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+ </div>
+ <div class="result_info">
+    <p id="result"> X</p>
+    <button id="restart">Ulang</button>
+  </div>
+  <script>
+    window.onload = () => {
+  //js code here
+
+  const boxes = document.querySelectorAll(".container div");
+  const info_box = document.getElementById("result");
+  const restart = document.getElementById("restart");
+  let player = "O",
+    game_over = false;
+  let board = [...Array(9)].fill("x");
+  boxes.forEach((ele, index) => {
+    ele.onclick = () => {
+      if (board[index] == "x" && !game_over) {
+        player = player == "X" ? "O" : "X";
+        info_box.innerHTML = `:${player == "X" ? "O" : "X"}`;
+        board[index] = ele.innerHTML = player;
+        gameOver();
+      }
+    };
+  });
+
+  const gameOver = () => {
+    for (let i = 0; i < 9; i += 3) {
+      if (
+        board[i] !== "x" &&
+        board[i] == board[i + 1] &&
+        board[i] == board[i + 2]
+      ) {
+        info_box.innerHTML = `Pemenang : ${player}`;
+        game_over = true;
+        return;
+      }
+    }
+    for (let i = 0; i < 3; i++) {
+      if (
+        board[i] !== "x" &&
+        board[i] == board[i + 3] &&
+        board[i] == board[i + 6]
+      ) {
+        info_box.innerHTML = `Pemenang : ${player}`;
+        game_over = true;
+        return;
+      }
+    }
+    if (board[0] !== "x" && board[0] == board[4] && board[0] == board[8]) {
+      info_box.innerHTML = `Pemenang : ${player}`;
+      game_over = true;
+      return;
+    }
+    if (board[2] !== "x" && board[2] == board[4] && board[2] == board[6]) {
+      info_box.innerHTML = `Pemenang : ${player}`;
+      game_over = true;
+      return;
+    }
+    if (board.every((ele) => ele !== "x")) {
+      info_box.innerHTML = "Seri!";
+      game_over = true;
+      return;
+    }
+  };
+
+  const restartGame = () => {
+    (player = "O"), (game_over = false);
+    board = [...Array(9)].fill("x");
+    boxes.forEach((ele) => {
+      ele.innerHTML = "";
+    });
+    info_box.innerHTML = "Mulai";
+  };
+  restart.addEventListener("click", restartGame);
+};
+
+  </script>
+</body>
+</html>
