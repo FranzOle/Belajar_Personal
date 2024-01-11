@@ -20,7 +20,7 @@ public class QuizGUI {
         this.currentQuestionIndex = 0;
         this.score = 0;
 
-        frame = new JFrame("Simple Quiz");
+        frame = new JFrame("Quiz pengetahuan umum");
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         questionLabel = new JLabel();
@@ -94,9 +94,11 @@ public class QuizGUI {
 
     private void showResult() {
         frame.getContentPane().removeAll();
-        JLabel resultLabel = new JLabel("Quiz completed! Your score: " + score + " out of " + questions.length);
+        float nilai = score/questions.length * 100;
+        JLabel resultLabel = new JLabel("Quiz completed! Your jawaban yang benar: " + score + " dari " + questions.length);
         resultLabel.setHorizontalAlignment(JLabel.CENTER);
         frame.getContentPane().add(resultLabel);
+//        frame.getContentPane().add(scoreLabel);
         frame.revalidate();
     }
 
@@ -105,11 +107,11 @@ public class QuizGUI {
     }
 
     public static void main(String[] args) {
-        // Define your questions and answers here
+        
         Question[] questions = {
-            new Question("What is the capital of France?", new String[]{"Berlin", "Paris", "Madrid", "Rome"}, 1),
-            new Question("Which planet is known as the 'Red Planet'?", new String[]{"Mars", "Jupiter", "Venus", "Saturn"}, 0),
-            // Add more questions here
+            new Question("2 * (2 + 3) adalah ", new String[]{"7", "5", "10", "2"}, 2),
+            new Question("Ibu kota Prancis adalah", new String[]{"Berlin", "Paris", "Madrid", "Rome"}, 1),
+            new Question("Planet apa yang disebut planet merah", new String[]{"Mars", "Jupiter", "Venus", "Saturnus"}, 0),
         };
 
         QuizGUI quiz = new QuizGUI(questions);

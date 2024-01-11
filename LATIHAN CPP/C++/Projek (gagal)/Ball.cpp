@@ -20,11 +20,14 @@ CircleShape Ball::getShape()
     return ballShape;
 }
  
-float Ball::getXVelocity()
-{
-    return xVelocity;
+//float Ball::getXVelocity()
+//{
+//    return xVelocity;
+//}
+float Ball::getXVelocity(){
+	return xVelocity;
+	return yVelocity;
 }
- 
 void Ball::reboundSides()
 {
     xVelocity = -xVelocity;
@@ -48,5 +51,6 @@ void Ball::update()
     position.y += yVelocity;
     position.x += xVelocity;
     ballShape.setPosition(position);
+    ballShape.setVelocity(velocity);
 }
 

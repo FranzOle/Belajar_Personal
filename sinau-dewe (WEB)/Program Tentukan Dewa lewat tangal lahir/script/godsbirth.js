@@ -7,7 +7,10 @@ function DewaKamu(){
     var hari = Objek.getDate();
 
     var dewa = "";
-
+    if(nama.trim()==""){
+        alert("Isi data diri terlebih dulu :)");
+    }
+    else{
     if(bulan==1){
         if (hari>0 && hari<25) {
             dewa="Osiris";
@@ -105,7 +108,8 @@ function DewaKamu(){
         else if (hari>=25) {
             dewa ="Mars";
         }         
-    }
-
-    
+    } 
+    document.querySelector("#hasil").innerHTML= nama + ", Dewa kamu adalah "+dewa;
+    document.querySelector("#result").innerHTML = "Mari temukan pengalaman seru di society.fun"
+        }
     }

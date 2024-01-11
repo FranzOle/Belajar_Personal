@@ -60,7 +60,7 @@ class Task extends JPanel {
 
     public void changeIndex(int num) {
         this.index.setText(num + ""); // num to String
-        this.revalidate(); // refresh
+        this.revalidate(); 
     }
 
     public JButton getDone() {

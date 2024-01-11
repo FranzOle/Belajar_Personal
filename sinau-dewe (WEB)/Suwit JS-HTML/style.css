@@ -1,0 +1,22 @@
+
+img {
+    transition: transform 0.3s;
+}
+
+img:hover {
+    transform: scale(1.0);
+}
+
+#destroy {
+    color: #fff;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#destroy:hover {
+    color: #fff;
+    box-shadow: 1px 3px 19px 0px rgba(252, 185, 0);
+}
+
+#mainLagi:hover{
+    color: rgb(252, 185, 0);
+}
