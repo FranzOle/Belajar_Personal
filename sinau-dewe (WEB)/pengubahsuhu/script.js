@@ -1,83 +1,84 @@
-  document.addEventListener("DOMContentLoaded", function () {
-    let c_f = document.getElementById("merah");
-    let c_r = document.getElementById("biru");
-    let f_c = document.getElementById("hijau");
-    let f_r = document.getElementById("kuning");
-    let r_c = document.getElementById("ungu");
-    let r_f = document.getElementById("oranye");
 
-    let hasilObj = document.querySelector("#hasil");
-
-    c_f.addEventListener("click", CelToFahr);
-    c_r.addEventListener("click", CelToRmr);
-    f_c.addEventListener("click", FahrToCel);
-    f_r.addEventListener("click", FahrToRmr);
-    r_c.addEventListener("click", RmrToCel);
-    r_f.addEventListener("click", RmrToFahr);
-
-    function CelToFahr() {
-        let celsius = parseFloat(document.getElementById("val-c").value);
-
-        if (!isNaN(celsius)) {
-            const convert = (celsius * 9/5) + 32;
-            hasilObj.innerHTML = "Hasil konversi ke Fahrenheit: " + convert.toFixed(2) + " °F";
-        } else {
-            hasilObj.innerHTML = "Masukkan angka yang valid untuk Celsius.";
-        }
-    }
-
-    function CelToRmr() {
-        let celsius = parseFloat(document.getElementById("val-c").value);
-
-        if (!isNaN(celsius)) {
-            const convert = (4/5) * celsius;
-            hasilObj.innerHTML = "Hasil konversi ke Reamur adalah " + convert.toFixed(2) + " R";
-        } else {
-            hasilObj.innerHTML = "Masukkan angka yang valid untuk Celsius.";
-        }
-    }
-
-    function FahrToCel() {
-        let fahrenheit = parseFloat(document.getElementById("val-f").value);
-
-        if (!isNaN(fahrenheit)) {
-            const convert = (fahrenheit - 32) * 5/9;
-            hasilObj.innerHTML = "Hasil konversi ke Celsius: " + convert.toFixed(2) + " °C";
-        } else {
-            hasilObj.innerHTML = "Masukkan angka yang valid untuk Fahrenheit.";
-        }
-    }
-
-    function FahrToRmr() {
-        let fahrenheit = parseFloat(document.getElementById("val-f").value);
-
-        if (!isNaN(fahrenheit)) {
-            const convert = (5/9) * (fahrenheit - 32) * 4/5;
-            hasilObj.innerHTML = "Hasil konversi ke Reamur adalah " + convert.toFixed(2) + " R";
-        } else {
-            hasilObj.innerHTML = "Masukkan angka yang valid untuk Fahrenheit.";
-        }
-    }
-
-    function RmrToCel() {
-        let reamur = parseFloat(document.getElementById("val-r").value);
-
-        if (!isNaN(reamur)) {
-            const convert = (5/4) * reamur;
-            hasilObj.innerHTML = "Hasil konversi ke Celsius: " + convert.toFixed(2) + " °C";
-        } else {
-            hasilObj.innerHTML = "Masukkan angka yang valid untuk Reamur.";
-        }
-    }
-
-    function RmrToFahr() {
-        let reamur = parseFloat(document.getElementById("val-r").value);
-
-        if (!isNaN(reamur)) {
-            const convert = ((5/4) * reamur * 9/5) + 32;
-            hasilObj.innerHTML = "Hasil konversi ke Fahrenheit: " + convert.toFixed(2) + " °F";
-        } else {
-            hasilObj.innerHTML = "Masukkan angka yang valid untuk Reamur.";
-        }
-    }
+  document.querySelector("#val-c").addEventListener("input", function() {
+  document.querySelector("#val-f").disabled = this.value !== "";
+  document.querySelector("#val-r").disabled = this.value !== "";
 });
+
+  document.querySelector("#val-f").addEventListener("input", function() {
+  document.querySelector("#val-c").disabled = this.value !== "";
+  document.querySelector("#val-r").disabled = this.value !== "";
+});
+
+  document.querySelector("#val-r").addEventListener("input", function() {
+  document.querySelector("#val-c").disabled = this.value !== "";
+  document.querySelector("#val-f").disabled = this.value !== "";
+});
+
+merah.onclick = () => {
+    let celsius = parseFloat(document.querySelector("#val-c").value);
+if(isNaN(celsius)){
+    alert("NILAI KOSONG WOI");
+}
+else{
+    let pil = document.querySelectorAll("span");
+    for(let i=0; i<pil.length; i++){
+                    switch(i){
+                        case 0:
+                            pil[i].innerHTML = celsius;
+                            break;
+                        case 1:
+                            pil[i].innerHTML =(celsius * 9/5) + 32;
+                            break;
+                        case 2:
+                            pil[i].innerHTML = celsius * 4/5;
+                            break;
+                    }
+                }}
+        
+    };
+    
+    biru.onclick = () => {
+    let fahrenheit = parseFloat(document.querySelector("#val-f").value);
+
+    if (isNaN(fahrenheit)) {
+        alert("NILAI KOSONG WOI");
+    } else {
+        let pil = document.querySelectorAll("span");
+        for (let i = 0; i < pil.length; i++) {
+            switch (i) {
+                case 0:
+                    pil[i].innerHTML = ((fahrenheit - 32) * 5 / 9).toFixed(2);
+                    break;
+                case 1:
+                    pil[i].innerHTML = fahrenheit.toFixed(2);
+                    break;
+                case 2:
+                    pil[i].innerHTML = ((fahrenheit - 32) * 4 / 9).toFixed(2);
+                    break;
+            }
+        }
+    }
+};
+
+hijau.onclick = () => {
+    let reamur = parseFloat(document.querySelector("#val-r").value);
+
+    if (isNaN(reamur)) {
+        alert("NILAI KOSONG WOI");
+    } else {
+        let pil = document.querySelectorAll("span");
+        for (let i = 0; i < pil.length; i++) {
+            switch (i) {
+                case 0:
+                    pil[i].innerHTML = (reamur * 5 / 4).toFixed(2);
+                    break;
+                case 1:
+                    pil[i].innerHTML = (reamur * 9 / 4 + 32).toFixed(2);
+                    break;
+                case 2:
+                    pil[i].innerHTML = reamur.toFixed(2);
+                    break;
+            }
+        }
+    }
+};
