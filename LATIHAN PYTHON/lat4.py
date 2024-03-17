@@ -3,6 +3,7 @@
 a = 5
 b = 7
 print(a + b)
+# Note: variabel dapat dideklarasi lagi
 
 x = 1.0
 y =2.5
