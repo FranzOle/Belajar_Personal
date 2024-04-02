@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BromoAirlinesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Akun">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Nama" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="TanggalLahir" Type="date" Nullable="false" />
+    <Property Name="NomorTelepon" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="MerupakanAdmin" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Bandara">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nama" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="KodeIATA" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="Kota" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="NegaraID" Type="int" Nullable="false" />
+    <Property Name="JumlahTerminal" Type="int" Nullable="false" />
+    <Property Name="Alamat" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="JadwalPenerbangan">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KodePenerbangan" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="BandaraKeberangkatanID" Type="int" Nullable="false" />
+    <Property Name="BandaraTujuanID" Type="int" Nullable="false" />
+    <Property Name="MaskapaiID" Type="int" Nullable="false" />
+    <Property Name="TanggalWaktuKeberangkatan" Type="datetime" Nullable="false" />
+    <Property Name="DurasiPenerbangan" Type="int" Nullable="false" />
+    <Property Name="HargaPerTiket" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KodePromo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Kode" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="PersentaseDiskon" Type="float" Nullable="false" />
+    <Property Name="MaksimumDiskon" Type="float" Nullable="false" />
+    <Property Name="BerlakuSampai" Type="date" Nullable="false" />
+    <Property Name="Deskripsi" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Maskapai">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nama" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Perusahaan" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="JumlahKru" Type="int" Nullable="false" />
+    <Property Name="Deskripsi" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Negara">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nama" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="IbukotaNegara" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PerubahanStatusJadwalPenerbangan">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JadwalPenerbanganID" Type="int" Nullable="false" />
+    <Property Name="StatusPenerbanganID" Type="int" Nullable="false" />
+    <Property Name="WaktuPerubahanTerjadi" Type="datetime" Nullable="false" />
+    <Property Name="PerkiraanDurasiDelay" Type="int" />
+  </EntityType>
+  <EntityType Name="StatusPenerbangan">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nama" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TransaksiDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TransaksiHeaderID" Type="int" Nullable="false" />
+    <Property Name="TitelPenumpang" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="NamaLengkapPenumpang" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TransaksiHeader">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AkunID" Type="int" Nullable="false" />
+    <Property Name="TanggalTransaksi" Type="datetime" Nullable="false" />
+    <Property Name="JadwalPenerbanganID" Type="int" Nullable="false" />
+    <Property Name="JumlahPenumpang" Type="int" Nullable="false" />
+    <Property Name="TotalHarga" Type="float" Nullable="false" />
+    <Property Name="KodePromoID" Type="int" />
+  </EntityType>
+  <Association Name="FK_AkunID_TransaksiHeader_Akun">
+    <End Role="Akun" Type="Self.Akun" Multiplicity="1" />
+    <End Role="TransaksiHeader" Type="Self.TransaksiHeader" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Akun">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TransaksiHeader">
+        <PropertyRef Name="AkunID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BandaraKeberangkatanID_JadwalPenerbangan_Bandara">
+    <End Role="Bandara" Type="Self.Bandara" Multiplicity="1" />
+    <End Role="JadwalPenerbangan" Type="Self.JadwalPenerbangan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bandara">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="JadwalPenerbangan">
+        <PropertyRef Name="BandaraKeberangkatanID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BandaraTujuanID_JadwalPenerbangan_Bandara">
+    <End Role="Bandara" Type="Self.Bandara" Multiplicity="1" />
+    <End Role="JadwalPenerbangan" Type="Self.JadwalPenerbangan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bandara">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="JadwalPenerbangan">
+        <PropertyRef Name="BandaraTujuanID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JadwalPenerbanganID_PerubahanStatusJadwalPenerbangan_JadwalPenerbangan">
+    <End Role="JadwalPenerbangan" Type="Self.JadwalPenerbangan" Multiplicity="1" />
+    <End Role="PerubahanStatusJadwalPenerbangan" Type="Self.PerubahanStatusJadwalPenerbangan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JadwalPenerbangan">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PerubahanStatusJadwalPenerbangan">
+        <PropertyRef Name="JadwalPenerbanganID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JadwalPenerbanganID_TransaksiHeader_JadwalPenerbangan">
+    <End Role="JadwalPenerbangan" Type="Self.JadwalPenerbangan" Multiplicity="1" />
+    <End Role="TransaksiHeader" Type="Self.TransaksiHeader" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JadwalPenerbangan">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TransaksiHeader">
+        <PropertyRef Name="JadwalPenerbanganID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KodePromoID_TransaksiHeader_KodePromo">
+    <End Role="KodePromo" Type="Self.KodePromo" Multiplicity="0..1" />
+    <End Role="TransaksiHeader" Type="Self.TransaksiHeader" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KodePromo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TransaksiHeader">
+        <PropertyRef Name="KodePromoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MaskapaiID_JadwalPenerbangan_Maskapai">
+    <End Role="Maskapai" Type="Self.Maskapai" Multiplicity="1" />
+    <End Role="JadwalPenerbangan" Type="Self.JadwalPenerbangan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Maskapai">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="JadwalPenerbangan">
+        <PropertyRef Name="MaskapaiID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NegaraID_Bandara_Negara">
+    <End Role="Negara" Type="Self.Negara" Multiplicity="1" />
+    <End Role="Bandara" Type="Self.Bandara" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Negara">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Bandara">
+        <PropertyRef Name="NegaraID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StatusPenerbanganID_PerubahanStatusJadwalPenerbangan_StatusPenerbangan">
+    <End Role="StatusPenerbangan" Type="Self.StatusPenerbangan" Multiplicity="1" />
+    <End Role="PerubahanStatusJadwalPenerbangan" Type="Self.PerubahanStatusJadwalPenerbangan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StatusPenerbangan">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PerubahanStatusJadwalPenerbangan">
+        <PropertyRef Name="StatusPenerbanganID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransaksiHeaderID_TransaksiDetail_TransaksiHeader">
+    <End Role="TransaksiHeader" Type="Self.TransaksiHeader" Multiplicity="1" />
+    <End Role="TransaksiDetail" Type="Self.TransaksiDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransaksiHeader">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TransaksiDetail">
+        <PropertyRef Name="TransaksiHeaderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BromoAirlinesModelStoreContainer">
+    <EntitySet Name="Akun" EntityType="Self.Akun" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bandara" EntityType="Self.Bandara" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JadwalPenerbangan" EntityType="Self.JadwalPenerbangan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KodePromo" EntityType="Self.KodePromo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Maskapai" EntityType="Self.Maskapai" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Negara" EntityType="Self.Negara" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PerubahanStatusJadwalPenerbangan" EntityType="Self.PerubahanStatusJadwalPenerbangan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StatusPenerbangan" EntityType="Self.StatusPenerbangan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TransaksiDetail" EntityType="Self.TransaksiDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TransaksiHeader" EntityType="Self.TransaksiHeader" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AkunID_TransaksiHeader_Akun" Association="Self.FK_AkunID_TransaksiHeader_Akun">
+      <End Role="Akun" EntitySet="Akun" />
+      <End Role="TransaksiHeader" EntitySet="TransaksiHeader" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BandaraKeberangkatanID_JadwalPenerbangan_Bandara" Association="Self.FK_BandaraKeberangkatanID_JadwalPenerbangan_Bandara">
+      <End Role="Bandara" EntitySet="Bandara" />
+      <End Role="JadwalPenerbangan" EntitySet="JadwalPenerbangan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BandaraTujuanID_JadwalPenerbangan_Bandara" Association="Self.FK_BandaraTujuanID_JadwalPenerbangan_Bandara">
+      <End Role="Bandara" EntitySet="Bandara" />
+      <End Role="JadwalPenerbangan" EntitySet="JadwalPenerbangan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JadwalPenerbanganID_PerubahanStatusJadwalPenerbangan_JadwalPenerbangan" Association="Self.FK_JadwalPenerbanganID_PerubahanStatusJadwalPenerbangan_JadwalPenerbangan">
+      <End Role="JadwalPenerbangan" EntitySet="JadwalPenerbangan" />
+      <End Role="PerubahanStatusJadwalPenerbangan" EntitySet="PerubahanStatusJadwalPenerbangan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JadwalPenerbanganID_TransaksiHeader_JadwalPenerbangan" Association="Self.FK_JadwalPenerbanganID_TransaksiHeader_JadwalPenerbangan">
+      <End Role="JadwalPenerbangan" EntitySet="JadwalPenerbangan" />
+      <End Role="TransaksiHeader" EntitySet="TransaksiHeader" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KodePromoID_TransaksiHeader_KodePromo" Association="Self.FK_KodePromoID_TransaksiHeader_KodePromo">
+      <End Role="KodePromo" EntitySet="KodePromo" />
+      <End Role="TransaksiHeader" EntitySet="TransaksiHeader" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MaskapaiID_JadwalPenerbangan_Maskapai" Association="Self.FK_MaskapaiID_JadwalPenerbangan_Maskapai">
+      <End Role="Maskapai" EntitySet="Maskapai" />
+      <End Role="JadwalPenerbangan" EntitySet="JadwalPenerbangan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NegaraID_Bandara_Negara" Association="Self.FK_NegaraID_Bandara_Negara">
+      <End Role="Negara" EntitySet="Negara" />
+      <End Role="Bandara" EntitySet="Bandara" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StatusPenerbanganID_PerubahanStatusJadwalPenerbangan_StatusPenerbangan" Association="Self.FK_StatusPenerbanganID_PerubahanStatusJadwalPenerbangan_StatusPenerbangan">
+      <End Role="StatusPenerbangan" EntitySet="StatusPenerbangan" />
+      <End Role="PerubahanStatusJadwalPenerbangan" EntitySet="PerubahanStatusJadwalPenerbangan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransaksiHeaderID_TransaksiDetail_TransaksiHeader" Association="Self.FK_TransaksiHeaderID_TransaksiDetail_TransaksiHeader">
+      <End Role="TransaksiHeader" EntitySet="TransaksiHeader" />
+      <End Role="TransaksiDetail" EntitySet="TransaksiDetail" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

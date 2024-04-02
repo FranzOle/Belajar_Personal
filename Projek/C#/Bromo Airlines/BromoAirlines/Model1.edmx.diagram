@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bb0495299f1f48ce856225e712d5df05" Name="Diagram1">
+        <EntityTypeShape EntityType="BromoAirlinesModel.Akun" Width="1.5" PointX="8.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="BromoAirlinesModel.Bandara" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BromoAirlinesModel.JadwalPenerbangan" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BromoAirlinesModel.KodePromo" Width="1.5" PointX="8.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BromoAirlinesModel.Maskapai" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BromoAirlinesModel.Negara" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BromoAirlinesModel.PerubahanStatusJadwalPenerbangan" Width="1.5" PointX="7.5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BromoAirlinesModel.StatusPenerbangan" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="BromoAirlinesModel.TransaksiDetail" Width="1.5" PointX="12.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BromoAirlinesModel.TransaksiHeader" Width="1.5" PointX="10.5" PointY="4.25" IsExpanded="true" />
+        <AssociationConnector Association="BromoAirlinesModel.FK_AkunID_TransaksiHeader_Akun" ManuallyRouted="false" />
+        <AssociationConnector Association="BromoAirlinesModel.FK_BandaraKeberangkatanID_JadwalPenerbangan_Bandara" ManuallyRouted="false" />
+        <AssociationConnector Association="BromoAirlinesModel.FK_BandaraTujuanID_JadwalPenerbangan_Bandara" ManuallyRouted="false" />
+        <AssociationConnector Association="BromoAirlinesModel.FK_NegaraID_Bandara_Negara" ManuallyRouted="false" />
+        <AssociationConnector Association="BromoAirlinesModel.FK_JadwalPenerbanganID_PerubahanStatusJadwalPenerbangan_JadwalPenerbangan" ManuallyRouted="false" />
+        <AssociationConnector Association="BromoAirlinesModel.FK_JadwalPenerbanganID_TransaksiHeader_JadwalPenerbangan" ManuallyRouted="false" />
+        <AssociationConnector Association="BromoAirlinesModel.FK_MaskapaiID_JadwalPenerbangan_Maskapai" ManuallyRouted="false" />
+        <AssociationConnector Association="BromoAirlinesModel.FK_KodePromoID_TransaksiHeader_KodePromo" ManuallyRouted="false" />
+        <AssociationConnector Association="BromoAirlinesModel.FK_StatusPenerbanganID_PerubahanStatusJadwalPenerbangan_StatusPenerbangan" ManuallyRouted="false" />
+        <AssociationConnector Association="BromoAirlinesModel.FK_TransaksiHeaderID_TransaksiDetail_TransaksiHeader" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
